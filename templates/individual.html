@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+	<title>SentiMedia</title>
+    <!-- Bootstrap core CSS -->
+    <link href="/static/css/bootstrap.css?q=1280549780" rel="stylesheet">
+    <!-- Custom styles for this template -->
+    <link href="/static/css/main.css?q=1280549780" rel="stylesheet">
+  </head>
+  <body>
+    <div class = "container-fluid">
+        <div class = "row" style = "background-color: #b31217; display: flex">
+            <div class = "col-xs-12">
+                <h2 style ="margin-left:20px;">SentiMedia - Individual</h2>
+            </div>
+        </div>
+        <div class = "row">
+		    <div class = "col-xs-3 centered">
+                <a href="logistics" class="btn-block" style = "font-size: large; margin-top: 15px; margin-bottom: 15px" role="button">Logistics</a>
+            </div>
+            <div class = "col-xs-3 centered">
+                <a href="individual" class="btn-block" style = "font-size: large; margin-top: 15px; margin-bottom: 15px" role="button">Individual</a>
+            </div>
+            <div class = "col-xs-3 centered">
+                <a href="comparison" class="btn-block" style = "font-size: large; margin-top: 15px; margin-bottom: 15px" role="button">Comparison</a>
+            </div>
+            <div class = "col-xs-3 centered">
+                <a href="rankings" class="btn-block" style = "font-size: large; margin-top: 15px; margin-bottom: 15px" role="button">Channel Rankings</a>
+            </div>
+        </div>
+    </div>
+
+	<!-- +++++ Welcome Section +++++ -->
+	<div id="ww">
+	    <div class="container">
+			<div class="row">
+				<div class="col-lg-8 col-lg-offset-2 centered">
+					<h1>YouTube Data Analysis</h1>
+					<p>To view comment scores, simply enter the URL of the YouTube video below and click "Enter" to view the results.</p>
+                    <form action="" method="post">
+				        <label>Youtube URL: </label>
+				        <input type="text" name="video-url" id="video-url" styles="width:450px">
+				        <input type="button" value="Enter" onclick="return loadXMLIndividual()">
+                    </form>
+                </div><!-- /col-lg-8 -->
+			</div><!-- /row -->
+	    </div> <!-- /container -->
+	</div><!-- /ww -->
+
+	<!-- +++++ Projects Section +++++ -->
+	<div class="container pt">
+		<div class="row mt centered">
+            <h3 id="normalizedScore"></h3>
+            <iframe id="url" width="640" height="360" src="https://www.youtube.com/embed/N5mE-LzIKCI?ecver=1" frameborder="0" allowfullscreen></iframe>
+		</div><!-- /row -->
+		<div class="row mt centered">
+		    <div id="ww">
+                <p>SentiMedia uses machine learning to read and process YouTube comments that are highly rated. It reads the comments and evaluates which ones are positive and which ones are negative. The comments are then assigned numeric values according to their connotations; positive comments are assigned the value of 1 while negative comments are assigned the value of -1. After the highly rated comments are assigned values, the values are added together and normalized. This normalized score can fall anywhere between -1 and 1 and represents the sentiment left on the video by its viewers.</p>
+                <p>This number can be interpreted a representation of the YouTuber's popularity among his or her viewers. If a video has a normaized score of closer to -1, then their video has a fairly large amount of negative comments. On the other hand, if a video has a normalized score closer to 1, then their video has very few negative comments.</p>
+	        </div><!-- /ww -->
+		</div><!-- /row -->
+	</div><!-- /container -->
+
+	<!-- +++++ Footer Section +++++ -->
+	<div id="footer">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-4">
+					<h4 class = "text-center">Made at HackTech 2017</h4>
+					<p class="text-center">
+						3/3/17 - 3/5/17<br/>
+						1200 E California Blvd, <br/>
+						Pasadena, CA 91125
+					</p>
+				</div><!-- /col-lg-4 -->
+				<div class="col-lg-4">
+					<h4 class="text-center">Our Links</h4>
+					<p class = "text-center">
+						<a class="white-link" href="https://github.com/grenmester/sentimedia" target="_blank">Github</a><br/>
+						<a class="white-link" href="https://devpost.com/software/sentimedia" target="_blank">Devpost</a><br/>
+					</p>
+				</div><!-- /col-lg-4 -->
+				<div class = "col-lg-4">
+					<h4 class = "text-center">The Team</h4>
+					<div class="col-lg-6" style = "float:left">
+						<p class="text-center"><a href = "https://github.com/arkingupta" class = "white-link" target = "_blank">Arkin Gupta</a><br/>
+						<a href = "https://github.com/ryanrfong" class = "white-link" target = "_blank">Ryan Fong</a></p>
+					</div><!-- /col-lg-4 -->
+					<div class = "col-lg-6" style = "float:right">
+						<p class = "text-center"><a href = "https://github.com/grenmester" class="white-link" target = "_blank">Jacky Lee</a></br>
+						<a href = "https://github.com/TerrenceHo" class = "white-link" target = "_blank">Terrence Ho</a></p>
+                    </div>
+				</div>
+			</div>
+		</div>
+	</div>
+    <script src="/static/js/hover.zoom.js?q=1280549780"></script>
+    <script src="/static/js/hover.zoom.conf.js?q=1280549780"></script>
+    <script src="/static/js/bootstrap.min.js?q=1280549780"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js?q=1280549780"></script>
+    <script>
+        function loadXMLIndividual() {
+            var req = new XMLHttpRequest()
+            req.onreadystatechange = function()
+            {
+                if (req.readyState == 4)
+                {
+                    if (req.status != 200)
+                    {
+                        //error handling code here
+                    }
+                    else
+                    {
+                        var response = JSON.parse(req.responseText)
+                        document.getElementById('normalizedScore').innerHTML = "This video has a normalized score of " + response.normalized_score + "."
+                        document.getElementById('url').setAttribute("src", response.url)
+                    }
+                }
+            }
+            req.open('POST', '/individual_ajax')
+            req.setRequestHeader("Content-type", "application/x-www-form-urlencoded")
+            var videoUrl = document.getElementById('video-url').value
+            var postVars = 'url=' + videoUrl
+            req.send(postVars)
+
+            return false
+        }
+    </script>
+  </body>
+</html>
